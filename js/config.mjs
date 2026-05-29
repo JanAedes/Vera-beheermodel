@@ -1,4 +1,4 @@
-import { loadRespecWithConfiguration } from "https://logius-standaarden.github.io/BOMOS-voorbeeld-beheermodel/organisation.mjs";
+import { loadRespecWithConfiguration } from "https://github.com/JanAedes/Vera-beheermodel/organisation.mjs";
 
 loadRespecWithConfiguration({
   authors: [ { 
