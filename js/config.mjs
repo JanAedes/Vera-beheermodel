@@ -11,12 +11,17 @@ loadRespecWithConfiguration({
         "company" : "Aedes",
         "name" : "Jan Brinkkemper",
         "url" : "https://www.aedes.nl"
+      },
+      { 
+        "company" : "Logius",
+        "name" : "Edwin Wisse",
+        "url" : "https://www.logius.nl"
       }
     ],
-  github: "https://github.com/JanAedes/Vera-beheermodel",
+  github: "https://github.com/Logius-standaarden/BOMOS-voorbeeld-beheermodel",
   nl_markdownCodeClass: "code",
   nl_markdownTableClass: "dkkvs",
-  previousPublishDate: "2026-05-29",
+  previousPublishDate: "2020-12-31",
   previousPublishVersion: "0.1",
   pubDomain: "bomos",
   publishDate: "2022-06-01",
