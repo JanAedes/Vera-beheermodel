@@ -1,4 +1,4 @@
-import { loadRespecWithConfiguration } from "https://logius-standaarden.github.io/publicatie/respec/organisation-config.mjs";
+import { loadRespecWithConfiguration } from "https://logius-standaarden.github.io/BOMOS-voorbeeld-beheermodel/organisation.mjs";
 
 loadRespecWithConfiguration({
   authors: [ { 
@@ -6,7 +6,7 @@ loadRespecWithConfiguration({
         "name" : "Jan Brinkkemper",
         "url" : "https://www.aedes.nl"
       } ],
-  github: "https://github.com/Logius-standaarden/BOMOS-voorbeeld-beheermodel",
+  github: "https://github.com/JanAedes/Vera-beheermodel",
   nl_markdownCodeClass: "code",
   nl_markdownTableClass: "dkkvs",
   previousPublishDate: "2020-12-31",
