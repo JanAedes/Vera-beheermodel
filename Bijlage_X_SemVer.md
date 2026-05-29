@@ -1,6 +1,17 @@
-# Bijlage X: Versionering van de documenten
+# Bijlage 1: Versionering van de documenten
 
-Deze bijlage beschrijft de versioneringsmethodiek ofwel de standaard manier om om te gaan met versienummers van de standaard. De versioneringsmethodiek is gelijk voor alle 'gepubliceerde standaarden' die onder beheer zijn van de Logius (afdeling standaarden) en is gebaseerd op Semver. Semver staat voor Semantisch Versioneren en we gebruiken versie 2.0.0  van de standaard zoals gepubliceerd op [semver.org](https://semver.org/lang/nl/#semantisch-versioneren-200).
+Deze bijlage beschrijft de versioneringsmethodiek ofwel de standaard manier om om te gaan met versienummers van VERA. VERA heeft een voorspelbare release cyclus. Wij streven naar een balans tussen het regelmatig uitbrengen van voorspelbare versies en het vermijden van een overdaad aan versies op de markt.
+
+Semantic Versioning
+We sluiten net als OpenApi aan bij Semantic Versioning 2.0.0 https://semver.org/ maar brengen geen pre-releases of release candidates uit.
+
+We kennen de volgende soorten versies:
+
+- Major versie.
+- Minor versie
+- Patch versie
+  
+![Semantic Versioning](media/Semver.png "Semantic Versioning")
 
 ## Versioneringsmethodiek
 
@@ -8,48 +19,70 @@ Per document wordt met `[documentnaam]_vX.Y.Z` de versie aangegeven. Met `vX.Y.Z
 
 ## Patch Releases
 
-In een patchrelease worden wijzigingen doorgevoerd die de technische specificatie niet raken. Dit kunnen tekstuele wijzigen zijn of inhoudelijke indelingen van de standaard. De wijzigen worden vastgelegd in release notes. Een patch releases wordt door de beheerder op eigen initiatief of op aanwijzingen van gebruikers doorgevoerd en gepubliceerd. Een patchrelease wordt aan de Technische Architectuurgroep ter kennisgeving medegedeeld. Een nieuwe patchrelease vervangt een eerdere versie in zijn geheel.
+Ieder kwartaal brengen we een patch versie uit met alle wijzigingen die in het voorgaande kwartaal zijn doorgevoerd. Een minor versie kan de uitwerking van RFC’s bevatten en kleine projecten. Een patch versie bevat geen breaking-changes tenzij het om technische bugfixes en typo’s gaat.
+
+Bijvoorbeeld: VERA 4.1.2, VERA 5.0.1 etc.
 
 ## Minor releases
 
-In een minor release kunnen wijzigingen doorgevoerd worden die de technische specificatie  raken. Dat kunnen fouten zijn in de specificatie zijn, het verzwaren of verlichten van een restrictie of het een aanpassing van een beveiligingstandaard (zoals TLS 1.2 naar TLS 1.3). In de SEMVER aanpak zijn minor releases backwards compatible. Voor een standaard is backwards compatibility lastiger te bepalen omdat uiteindelijk twee partijen met elkaar moeten meebewegen. *Het is de intentie dat Minor Releases niet backwards incompatible zijn*. Voor Minor Releases wordt een uitgebreid vaststellings-procedure gevolgd conform het  beheermodel en er kan in overleg met de stakeholders tot een migratiepad worden besloten. Dit migratiepad wordt in de release meegenomen.
+Ieder jaar brengen we in Q1 een minor versie uit welke alle patches bevat die tot dan toe zijn uitgebracht. Een minor versie kan de uitwerking van RFC’s bevatten en kleine projecten. Een minor versie bevat geen breaking-changes tenzij het om technische bugfixes en typo’s gaat.
 
-## Major Releases
+Bijvoorbeeld: VERA 4.1, VERA 4.2 etc. 
 
-Er zijn twee Major release momenten: de overgang naar nieuwe internationale standaarden binnen een bestaand profiel, bijvoorbeeld HTTP 2.0 of  de toevoeging van een geheel nieuwe regel of profiel binnen de standaard. In het eerste geval komt er een nieuw major versie van de standaard om vast te stellen volgens het de reguliere vaststellingsprocedure (conform het  Beheermodel). In het tweede geval wordt er een *nieuw document* of *nieuwe sectie* toegevoegd aan de standaard. 
+## Compatibiliteit
+VERA versies zijn backwards-compatible.
 
-Als hierbij het functionele toepassingsgebied van de standaard, waarvoor het pas toe of leg uit regime geldt, veranderd, dan wordt eerst de uitgebreide vaststellingsprocedure gevolgd en vervolgens de procedure van het Forum Standaardisatie.
+## Technische compatibiliteit
 
-## Toelichting en voorbeeld regels
-Een  versie van een standaard (versie 1.2.0) is compatible met een eerdere versie van een standaard (versie 1.1.0) als uitwerkingen/ implementaties volgens de eerdere versie 1.1.0 ook volledig voldoen aan de normen en eisen van versie 1.2.0 .
-> Wijzigingen in de standaard kunnen impact hebben op de technische werking van implementaties en/of op afspraken die de technische werking van implementaties niet raken bv organisatorische of proces afspraken;
+Alle sub-versies zijn technisch compatible met een Major versie. De major versie is onderdeel van de url van een API. Bijv. : /v4
 
-Voor standaarden is relevant of een realisatie volgens de oude versie van een standaard wel of niet voldoet aan de nieuwe versie van de standaard:
+## Functionele compatibiliteit
 
-Globale regels voor het bepalen van de impact op de versionering:
+Zowel Major, Minor en Patch releases kunnen uitbreidingen op functionaliteit hebben. Vaak is het nodig om dan dezelfde versie te gebruiken in de keten. Zolang je de nieuwe functionaliteit niet ondersteunt dan is het niet nodig om een nieuwe versie te implementeren.
 
-- Toevoegen = Major
-- Wijzingen :
-	- Versoepeling = Minor
-	- Verscherping = Major
-- Verwijderen = Minor
-- Correctie = Patch
+Je blijft dus altijd compatible binnen de Major versie ongeacht welke subversie je in gebruik hebt.
 
-## Versie overgangen
+## Obsolete verklaring
 
-Wanneer een nieuwe major versie uitkomt zal de oude versie conform de afgestemde migratiepad een einddatum van geldigheid krijgen. In de overgangsperiode kunnen dus meerdere versies gepubliceerd zijn en de status geldig hebben.
+Wanneer in de doorontwikkeling van VERA wordt geconstateerd dat onderdelen van het VERA-model niet meer van toepassing zijn worden deze obsolete verklaard. Deze onderdelen blijven dan nog beschikbaar in alle MINOR- en PATCH-versies maar worden verwijderd uit de eerstvolgende MAJOR-versie.
 
-Om te kunnen werken aan publicatie-, werk- en voorstelversies van documenten worden Git branches gebruikt.
+Wanneer bijvoorbeeld in VERA 4.0 een attribuut uit een klasse obsolete wordt verklaard zal dit nog geen gevolgen hebben voor de technische API's van versie 4.x. In de API's van VERA 5.x zal dit attribuut niet meer beschikbaar zijn.
 
-Voorbeeld
-In het onderstaande voorbeeld zien wij een standaard van 1.0.0 naar 1.1.0 ontwikkelen.
+## Wijzigingen
+Iedere vrijdag komt het VERA-architectuurteam bij elkaar om wijzigingen door te voeren op de standaard. Deze wijzigingen komen voort uit:
 
+## RFC's vanuit leveranciers.
+Projecten om grote uitbreidingen voor te bereiden.
+Werkgroepen die bepaalde thema's uitwerken.
+Feedback vanuit de praktijk
 
+Het VERA-architectuurteam is enorm blij met de toewijding van de VERA-community en met alle gebruikers die kritisch meedenken over de standaard. Alle feedback in de vorm van verbetervoorstellen, maar ook over algemene issues die opgemerkt worden, is meer dan welkom. Mocht een issue of optimalisatie in beeld zijn, schroom niet om deze te delen met het Architectuurteam. Deze meldingen worden wekelijks bekeken en beoordeeld. Dit kan leiden tot een directe actie/verbetering als dat opportuun is, of tot een opdracht voor op de backlog. Het delen van verbetervoorstellen, vragen of opmerkingen kan, naast een e-mail naar vera-architectuurteam@aedesdatastandaarden.nl, eenvoudig op deze locatie: https://github.com/Aedes-datastandaarden/vera-openapi/issues
 
-![Gitflow](media/Semver_gitflow_branches.svg "Gitflow")
+## Referentiedata
+Een uitbreiding van referentiedata heeft geen impact op de technische API's. Daarom worden nieuwe waarden voor de referentiedata direct gepubliceerd. Wanneer bestaande referentiedata-waarden niet meer van toepassing zijn worden deze obsolete verklaard. Dat wil zeggen dat de waarden nog beschikbaar blijven tot de volgende MAJOR-versie. Referentiedata-waarden die in VERA 4.0 obsolete verklaard zijn kunnen gebruikt blijven in alle patches en minor-releases van VERA 4.0. Vanaf VERA 5.0 zullen deze waarden niet meer beschikbaar zijn. Er is geen harde link tussen referentiedata en bepaalde API versies.
 
+## Wiki
+Wijzigingen in de modellen en documentatie op de wiki worden per Major, Minor en laatste patchversie gepubliceerd. Er is een redactieomgeving van de wiki waarop de Pre-release staat van de volgende Major of Minor versie. Deze bevat alle wijzigingen tot dusver en zal tot aan de release continue wijzigen.
 
+## Definities
+### Non Breaking Changes
+Non breaking changes mogen in minor of patch.
 
-De branch main is de huidig gepubliceerde versie en de branch develop is de werkversie. Het uitwerken van een RFC gebeurt in een afsplitsing van de develop branch waarna het terug de develop branch invloeit. In het voorbeeld schema leidde RFC1 tot de eerste release candidate (rc) van versie 1.1.0 van de standaard. Wanneer de werkversie gereed en akkoord is als release stromen de wijzigingen naar de branch main.
+- Nieuwe attributen, resources, responses en metadata
+- Wijziging documentatie
+- Toevoegen security schemes, filters en parameters
+- Toevoegen informatiedomein, Entiteiten, Ketenprocessen en Berichten
+### Breaking changes
+Mogen alleen in een major versie.
 
-Het kan voorkomen dat gewenst wordt vlug een kleine (niet inhoudelijke) aanpassing aan de gepubliceerde versie te maken. Om bijvoorbeeld een spelfout vlug te corrigeren kan deze aanpassing op main i.p.v. develop worden uitgevoerd. In het voorbeeld leidde een hotfix tot een release van versie 1.0.1 waarna de aanpassing naar de werkversie geduwd wordt.
+- Hernoemen attributen, resources, responses, metadata, security schemes, filters, parameters
+- Wijziging type van attribuut
+- Verwijderen attributen, resources, responses, metadata
+- Verwijderen security schemes, filters, parameters
+- Hernoemen/verwijderen informatiedomein, Entiteiten, - Ketenprocessen en Berichten
+- Verplaatsen Entiteiten en - Berichten naar andere domeinen.
+### Bugfix
+Soms worden er fouten gemaakt bij de realisatie van de standaard. Deze kunnen zowel technisch als functioneel zijn. Een bugfix is een reparatie op technisch of functioneel niveau. Een kritieke fout die snel opgelost moet worden. Dit kan leiden tot een breaking change met de voorgaande release. De aangepast versie met de bugfix vervangt dan de voorgaande versie.
+
+### Build
+Een build is de laatse versie van de API's op de ontwikkelstraat. Deze kunnen zowel breaking als non-breaking changes bevatten. Alle door het architectuurteam doorgevoerde wijzigingen zijn daar direct direct zichtbaar. Handmatig kunnen er ook builds gemaakt worden van andere versies. Een build kan worden opgenoman als Patch.
