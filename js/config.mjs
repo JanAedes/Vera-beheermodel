@@ -6,18 +6,6 @@ loadRespecWithConfiguration({
         "name" : "Jan Brinkkemper",
         "url" : "https://www.aedes.nl"
       } ],
-  editors: [ 
-      { 
-        "company" : "Aedes",
-        "name" : "Jan Brinkkemper",
-        "url" : "https://www.aedes.nl"
-      },
-      { 
-        "company" : "Logius",
-        "name" : "Edwin Wisse",
-        "url" : "https://www.logius.nl"
-      }
-    ],
   github: "https://github.com/Logius-standaarden/BOMOS-voorbeeld-beheermodel",
   nl_markdownCodeClass: "code",
   nl_markdownTableClass: "dkkvs",
